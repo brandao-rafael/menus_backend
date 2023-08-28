@@ -7,4 +7,11 @@ export class CategoriesService extends CrudService {
   constructor(protected prisma: PrismaService) {
     super(prisma.category);
   }
+
+  async findOne(id: string) {
+    return this.prisma.category.findUnique({
+      where: { id },
+      include: { products: true },
+    });
+  }
 }
