@@ -14,4 +14,10 @@ export class CategoriesService extends CrudService<typeof PrismaService.prototyp
       include: { products: true },
     });
   }
+
+  async findByName(name: string) {
+    return this.prisma.category.findFirst({
+      where: { name },
+    });
+  }
 }

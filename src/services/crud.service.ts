@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 export abstract class CrudService<TModel extends ModelActions> {
   constructor(protected model: TModel) {}
 
-  async create(payload: { data: TModel }): Promise<TModel> {
+  async create(payload: any): Promise<TModel> {
     try {
       return await this.model.create({
         data: payload,
