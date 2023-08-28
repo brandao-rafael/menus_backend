@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma.service';
 import { CrudService } from './crud.service';
 
 @Injectable()
-export class CategoriesService extends CrudService {
+export class CategoriesService extends CrudService<typeof PrismaService.prototype.category> {
   constructor(protected prisma: PrismaService) {
     super(prisma.category);
   }

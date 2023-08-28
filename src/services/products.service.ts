@@ -3,12 +3,12 @@ import { PrismaService } from 'src/prisma.service';
 import { CrudService } from './crud.service';
 
 @Injectable()
-export class ProductsService extends CrudService {
+export class ProductsService extends CrudService<typeof PrismaService.prototype.product> {
   constructor(protected prisma: PrismaService) {
     super(prisma.product);
   }
 
-  async findAll() {
+  async findAll(): Promise<any> {
     return this.prisma.product.findMany({
       include: {
         category: {
