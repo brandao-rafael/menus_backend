@@ -8,14 +8,15 @@ import {
   Param,
 } from '@nestjs/common';
 import { CategoriesService } from 'src/services/categories.service';
+import { CreateCategoryDto } from './dto/create-category.dto';
 
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  create(@Body() data) {
-    return this.categoriesService.create(data);
+  create(@Body() data: CreateCategoryDto) {
+    return this.categoriesService.create(data as any);
   }
 
   @Get()
@@ -29,8 +30,8 @@ export class CategoriesController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() data) {
-    return this.categoriesService.update(id, data);
+  update(@Param('id') id: string, @Body() data: CreateCategoryDto) {
+    return this.categoriesService.update(id, data as any);
   }
 
   @Delete(':id')

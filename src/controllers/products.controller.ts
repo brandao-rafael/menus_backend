@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productService: ProductsService) {}
 
   @Post()
-  create(@Body() data) {
-    return this.productService.create(data);
+  create(@Body() data: CreateProductDto) {
+    return this.productService.create(data as any);
   }
 
   @Get()
@@ -21,8 +22,8 @@ export class ProductsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() data) {
-    return this.productService.update(id, data);
+  update(@Param('id') id: string, @Body() data: CreateProductDto) {
+    return this.productService.update(id, data as any);
   }
 
   @Delete(':id')

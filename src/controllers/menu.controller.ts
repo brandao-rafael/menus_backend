@@ -8,14 +8,15 @@ import {
   Param,
 } from '@nestjs/common';
 import { MenuService } from 'src/services/menu.service';
+import { CreateMenuDto } from './dto/create-menu.dto';
 
 @Controller('menu')
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Post()
-  create(@Body() data) {
-    return this.menuService.create(data);
+  create(@Body() data: CreateMenuDto) {
+    return this.menuService.create(data as any);
   }
 
   @Get()
@@ -29,8 +30,8 @@ export class MenuController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() data) {
-    return this.menuService.update(id, data);
+  update(@Param('id') id: string, @Body() data: CreateMenuDto) {
+    return this.menuService.update(id, data as any);
   }
 
   @Delete(':id')
