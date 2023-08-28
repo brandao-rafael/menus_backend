@@ -9,18 +9,19 @@ export class ProductsService extends CrudService {
   }
 
   async findAll() {
-    const time = new Date();
-    const isNight = time.getHours() >= 18 || time.getHours() <= 6;
-    try {
-      return this.prisma.product.findMany({
-        where: {
-          menu: {
-            name: isNight ? 'noturno' : 'diurno',
-          },
+    return this.prisma.product.findMany({
+      include: {
+        category: {
+          select: {
+            name: true
+          }
         },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+        menu: {
+          select: {
+            name: true
+          }
+        }
+      },
+    });
   }
 }
