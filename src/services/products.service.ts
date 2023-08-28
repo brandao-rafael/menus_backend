@@ -11,7 +11,6 @@ export class ProductsService extends CrudService {
   async findAll() {
     const time = new Date();
     const isNight = time.getHours() >= 18 || time.getHours() <= 6;
-    console.log(isNight);
     try {
       return this.prisma.product.findMany({
         where: {
