@@ -14,8 +14,8 @@ export class ProductsService extends CrudService {
     try {
       return this.prisma.product.findMany({
         where: {
-          category: {
-            name: isNight ? 'night' : 'day',
+          menu: {
+            name: isNight ? 'noturno' : 'diurno',
           },
         },
       });

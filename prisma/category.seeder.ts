@@ -5,13 +5,13 @@ const prisma = new PrismaClient();
 async function seedCategory() {
   await prisma.category.create({
     data: {
-      name: 'day',
+      name: 'lanches',
     },
   });
 
   await prisma.category.create({
     data: {
-      name: 'night',
+      name: 'massas',
     },
   });
 }

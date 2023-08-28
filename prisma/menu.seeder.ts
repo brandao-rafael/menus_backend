@@ -5,13 +5,13 @@ const prisma = new PrismaClient();
 async function seedMenu() {
   await prisma.menu.create({
     data: {
-      name: 'menu diurno',
+      name: 'Diurno',
     },
   });
 
   await prisma.menu.create({
     data: {
-      name: 'menu noturno',
+      name: 'Noturno',
     },
   });
 }

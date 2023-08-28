@@ -3,27 +3,47 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seedProduct() {
-  const dayCategory = await prisma.category.findFirst({ where: { name: 'day' } });
-  const nightCategory = await prisma.category.findFirst({ where: { name: 'night' } });
+  const lanchesCategory = await prisma.category.findFirst({ where: { name: 'lanches' } });
+  const massasCategory = await prisma.category.findFirst({ where: { name: 'massas' } });
+  const diurnoMenu = await prisma.menu.findFirst({ where: { name: 'Diurno' } });
+  const noturnoMenu = await prisma.menu.findFirst({ where: { name: 'Noturno' } });
 
-  if (dayCategory && nightCategory) {
+  if (lanchesCategory && massasCategory) {
     await prisma.product.create({
       data: {
-        name: 'Produto Dia 1',
-        price: 100,
-        description: 'Descrição do Produto Dia 1',
-        image: 'url_da_imagem_1',
-        categoryId: dayCategory.id,
+        name: 'Hamburguer',
+        price: 15,
+        description: 'Hamburguer delicioso',
+        image: 'url_da_imagem',
+        category: {
+          connect: {
+            id: lanchesCategory.id,
+          },
+        },
+        menu: {
+          connect: {
+            id: diurnoMenu.id,
+          },
+        },
       },
     });
-
+  
     await prisma.product.create({
       data: {
-        name: 'Produto Noite 1',
-        price: 150,
-        description: 'Descrição do Produto Noite 1',
-        image: 'url_da_imagem_2',
-        categoryId: nightCategory.id,
+        name: 'Espaguete',
+        price: 20,
+        description: 'Espaguete à bolonhesa',
+        image: 'url_da_imagem',
+        category: {
+          connect: {
+            id: massasCategory.id,
+          },
+        },
+        menu: {
+          connect: {
+            id: noturnoMenu.id,
+          },
+        },
       },
     });
   }
