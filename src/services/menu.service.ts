@@ -11,7 +11,9 @@ export class MenuService extends CrudService {
   async findAll() {
     const time = new Date();
     const isNight = time.getHours() >= 18 || time.getHours() <= 6;
-    return this.prisma.menu.findMany({ include: { products: true }, where: { name: isNight ? 'Noturno' : 'Diurno' }});
+    return this.prisma.menu.findMany({
+      include: { products: true },
+      where: { name: isNight ? 'Noturno' : 'Diurno' },
+    });
   }
-
 }
