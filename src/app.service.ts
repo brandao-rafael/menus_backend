@@ -1,28 +1,28 @@
 import { Injectable } from '@nestjs/common';
 
 const hello: string = `
-API ROUTES
+API ROUTES\n
 
-Products
-- GET https://menus-backend.vercel.app/products/
-- GET https://menus-backend.vercel.app/products/'id'
-- POST https://menus-backend.vercel.app/products/
-- PUT https://menus-backend.vercel.app/products/'id' 
-- DELETE https://menus-backend.vercel.app/products/'id'
+Products\n
+- GET https://menus-backend.vercel.app/products/\n
+- GET https://menus-backend.vercel.app/products/'id'\n
+- POST https://menus-backend.vercel.app/products/\n
+- PUT https://menus-backend.vercel.app/products/'id' \n
+- DELETE https://menus-backend.vercel.app/products/'id'\n
 
-Menu
-- GET https://menus-backend.vercel.app/menu/
-- GET https://menus-backend.vercel.app/menu/'id'
-- POST https://menus-backend.vercel.app/menu/
-- PUT https://menus-backend.vercel.app/menu/'id'
-- DELETE https://menus-backend.vercel.app/menu/'id'
+Menu\n
+- GET https://menus-backend.vercel.app/menu/\n
+- GET https://menus-backend.vercel.app/menu/'id'\n
+- POST https://menus-backend.vercel.app/menu/\n
+- PUT https://menus-backend.vercel.app/menu/'id'\n
+- DELETE https://menus-backend.vercel.app/menu/'id'\n
 
-Category
-- GET https://menus-backend.vercel.app/category/
-- GET https://menus-backend.vercel.app/category/'id'
-- POST https://menus-backend.vercel.app/category/
-- PUT https://menus-backend.vercel.app/category/'id'
-- DELETE https://menus-backend.vercel.app/category/'id'
+Category\n
+- GET https://menus-backend.vercel.app/category/\n
+- GET https://menus-backend.vercel.app/category/'id'\n
+- POST https://menus-backend.vercel.app/category/\n
+- PUT https://menus-backend.vercel.app/category/'id'\n
+- DELETE https://menus-backend.vercel.app/category/'id'\n
 `;
 
 @Injectable()
