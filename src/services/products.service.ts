@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma.service';
 import { CrudService } from './crud.service';
 import { CategoriesService } from './categories.service';
 import CreateProductInterface from 'src/interfaces/create-product.interface';
+import UpdateProductInterface from 'src/interfaces/update-product.interface';
 
 @Injectable()
 export class ProductsService extends CrudService<typeof PrismaService.prototype.product> {
@@ -47,6 +48,54 @@ export class ProductsService extends CrudService<typeof PrismaService.prototype.
           ...restOfPayload,
           categoryId: categoryData.id,
           menuId: menuData.id,
+        } as any,
+        include: {
+          category: {
+            select: {
+              name: true,
+            },
+          },
+          menu: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async update(id: string, payload: UpdateProductInterface): Promise<any> {
+    try {
+      
+      let categoryData: any;
+      let menuData: any;
+
+      if (payload.category !== undefined) {
+        categoryData = await this.categoryService.findByName(payload.category);
+        payload['categoryId'] = categoryData.id;
+        delete payload.category;
+        if (!categoryData) throw new Error('Categoria não encontrada');
+      }
+      if (payload.menu !== undefined) {
+      menuData = await this.prisma.menu.findFirst({
+        where: {
+          name: payload.menu,
+        },
+      });
+      payload['menuId'] = menuData.id;
+      delete payload.menu;
+      if (!menuData) throw new Error('Menu não encontrado');
+      }
+
+      return await this.prisma.product.update({
+        where: {
+          id,
+        },
+        data: {
+          ...payload,
         } as any,
         include: {
           category: {

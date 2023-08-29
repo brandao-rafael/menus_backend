@@ -7,6 +7,4 @@ export class UpdateProductDto {
   price?: number;
   description?: string;
   image?: string;
-  category?: string;
-  menu?: string;
 }

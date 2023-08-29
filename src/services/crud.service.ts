@@ -30,7 +30,7 @@ export abstract class CrudService<TModel extends ModelActions> {
     }
   }
 
-  async update(id: string, data: TModel) {
+  async update(id: string, data: any) {
     try {
       return this.model.update({ where: { id }, data });
     } catch (error) {
