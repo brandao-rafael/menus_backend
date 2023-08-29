@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "seed:menu": "ts-node prisma/menu.seeder.ts",
     "seed:category": "ts-node prisma/category.seeder.ts",
-    "seed:product": "ts-node prisma/product.seeder.ts"
+    "seed:product": "ts-node prisma/product.seeder.ts",
+    "vercel-build": "prisma generate && nest build"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
