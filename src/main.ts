@@ -1,10 +1,16 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { ExpressAdapter } from '@nestjs/platform-express';
+const express = require('express');
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe())
-  await app.listen(3001);
+const server = express();
+
+async function createNestApp() {
+    const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+    await app.init();
+    return server;
 }
-bootstrap();
+
+createNestApp();
+
+export default server;
