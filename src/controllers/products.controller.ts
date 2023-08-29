@@ -2,33 +2,16 @@ import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common'
 import { ProductsService } from '../services/products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { CrudController } from './crud.controller';
 
 @Controller('products')
-export class ProductsController {
-  constructor(private readonly productService: ProductsService) {}
+export class ProductsController extends CrudController<ProductsService, UpdateProductDto> {
+  constructor(protected readonly productService: ProductsService) {
+    super(productService);
+  }
 
   @Post()
   create(@Body() data: CreateProductDto) {
-    return this.productService.create(data as any);
-  }
-
-  @Get()
-  findAll() {
-    return this.productService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(id);
-  }
-
-  @Put(':id')
-  update(@Param('id') id: string, @Body() data: UpdateProductDto) {
-    return this.productService.update(id, data as any);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(id);
+    return this.productService.create(data);
   }
 }
